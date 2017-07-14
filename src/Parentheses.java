@@ -22,22 +22,18 @@ public class Parentheses {
                     stack.push(notation);
                     break;
                 case ")":
-                    System.out.println(stack.peek() + " equals  (" + stack.peek().equals("("));
-                    if (stack.isEmpty() || !stack.peek().equals("(")) return false;
-                    stack.pop();
+                    if (stack.isEmpty() || !stack.pop().equals("(")) return false;
                     break;
                 case "]":
-                    if (stack.isEmpty() || !stack.peek().equals("]")) return false;
-                    stack.pop();
+                    if (stack.isEmpty() || !stack.pop().equals("[")) return false;
                     break;
                 case "}":
-                    if (stack.isEmpty() || !stack.peek().equals("}")) return false;
-                    stack.pop();
+                    if (stack.isEmpty() || !stack.pop().equals("{")) return false;
                     break;
                 case "(":
+                    stack.push(notation);
                     break;
                 default:
-                    stack.push(notation);
                     break;
             }
         }

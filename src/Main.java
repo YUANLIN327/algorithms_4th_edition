@@ -87,7 +87,7 @@ public class Main {
 //        sortThree(5, 3, 1);
 //        FixedCapacityStack.main(null);
 //        ResizeArrayQueue.main(null);
-          Stack.main(null);
-//        Parentheses.main(null);
+//          Stack.main(null);
+        Parentheses.main(null);
     }
 }
