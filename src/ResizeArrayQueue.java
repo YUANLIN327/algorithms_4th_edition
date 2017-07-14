@@ -76,7 +76,7 @@ public class ResizeArrayQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            Item item = q[(first + i) & q.length];
+            Item item = q[(first + i) % q.length];
             i++;
             return item;
         }
