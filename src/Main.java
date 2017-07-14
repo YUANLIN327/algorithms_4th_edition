@@ -85,7 +85,7 @@ public class Main {
 //        System.out.println(mystery1(2, 6));
 //        System.out.println(euclid(120, 90));
 //        sortThree(5, 3, 1);
-        FixedCapacityStack.main(null);
-
+//        FixedCapacityStack.main(null);
+        ResizeArrayQueue.main(null);
     }
 }
