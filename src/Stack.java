@@ -1,6 +1,10 @@
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Stack<Item> {
+public class Stack<Item> implements Iterable<Item> {
     private int N = 0;
     private Node head;
     private Node tail;
@@ -10,7 +14,6 @@ public class Stack<Item> {
         Node next;
     }
 
-
     public boolean isEmpty() {
         return head == null;
     }
@@ -19,6 +22,10 @@ public class Stack<Item> {
         return N;
     }
 
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException();
+        return head.item;
+    }
 
     public void push(Item item) {
         Node oldHead = head;
@@ -33,39 +40,51 @@ public class Stack<Item> {
         if (isEmpty()) throw new NoSuchElementException();
         Item value = head.item;
         head = head.next;
-        if (isEmpty()){
+        if (isEmpty()) {
             tail = null;
         }
         N--;
         return value;
     }
 
-//    public Iterator<Item> iterator() {
-//        return new ArrayIterator();
-//    }
-//
-//    private class ArrayIterator implements Iterator<Item> {
-//        private int i = 0;
-//
-//        public boolean hasNext() {
-//            return i < n;
-//        }
-//
-//        public void remove() {
-//            throw new UnsupportedOperationException();
-//        }
-//
-//        public Item next() {
-//            if (!hasNext()) throw new NoSuchElementException();
-//            Item item = q[(first + i) % q.length];
-//            i++;
-//            return item;
-//        }
-//    }
+    public Iterator<Item> iterator() {
+        return new StackIterator();
+    }
+
+    private class StackIterator implements Iterator<Item> {
+        private Node i = head;
+
+        public boolean hasNext() {
+            return i != null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        public Item next() {
+            if (i == null) throw new NoSuchElementException();
+            Item value = i.item;
+            i = i.next;
+            return value;
+        }
+    }
 
 
     public static void main(String[] args) {
+        Stack<String> stack = new Stack<String>();
 
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-"))
+
+                stack.push(item);
+            else if (!stack.isEmpty()) StdOut.print(stack.pop() + " ");
+        }
+        for(String s: stack){
+            System.out.println(s);
+        }
+        StdOut.println("(" + stack.size() + " left on queue)");
     }
 
 }
