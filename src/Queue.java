@@ -1,12 +1,13 @@
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue<Item>{
+public class Queue<Item> implements Iterable<Item> {
     private Node first;
     private Node last;
     private int N = 0;
 
     private class Node {
-        Item value;
+        Item item;
         Node next;
     }
 
@@ -21,7 +22,7 @@ public class Queue<Item>{
     public void enque(Item item) {
         Node oldLast = last;
         last = new Node();
-        last.value = item;
+        last.item = item;
         last.next = null;
         if (isEmpty()) first = last;
         else oldLast.next = last;
@@ -30,11 +31,34 @@ public class Queue<Item>{
 
     public Item dequeue() {
         if (isEmpty()) throw new NoSuchElementException();
-        Item value = first.value;
+        Item value = first.item;
         first = first.next;
         if (isEmpty()) last = null;
         N--;
         return value;
+    }
+
+    public Iterator<Item> iterator() {
+        return new QueueIterator();
+    }
+
+    private class QueueIterator implements Iterator<Item> {
+        private Node i = first;
+
+        public boolean hasNext() {
+            return i != null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        public Item next() {
+            if (i == null) throw new NoSuchElementException();
+            Item value = i.item;
+            i = i.next;
+            return value;
+        }
     }
 
     public static void main(String[] args) {

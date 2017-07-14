@@ -6,7 +6,7 @@ public class Stack<Item> {
     private Node tail;
 
     private class Node {
-        Item value;
+        Item item;
         Node next;
     }
 
@@ -23,7 +23,7 @@ public class Stack<Item> {
     public void push(Item item) {
         Node oldHead = head;
         head = new Node();
-        head.value = item;
+        head.item = item;
         if (N == 0) tail = head;
         else head.next = oldHead;
         N++;
@@ -31,7 +31,7 @@ public class Stack<Item> {
 
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException();
-        Item value = head.value;
+        Item value = head.item;
         head = head.next;
         if (isEmpty()){
             tail = null;
