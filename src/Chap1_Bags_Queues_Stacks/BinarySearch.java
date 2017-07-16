@@ -1,3 +1,5 @@
+package Chap1_Bags_Queues_Stacks;
+
 class BinarySearch {
     static int rank(int key, int[] a) {
         int lo = 0;

@@ -1,3 +1,5 @@
+package Chap1_Misc;
+
 import java.util.Arrays;
 
 public class Misc {

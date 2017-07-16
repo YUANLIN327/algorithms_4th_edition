@@ -1,3 +1,6 @@
+package Chap1_Misc;
+
+import Chap1_Bags_Queues_Stacks.Stack;
 import edu.princeton.cs.algs4.StdIn;
 
 public class Parentheses {

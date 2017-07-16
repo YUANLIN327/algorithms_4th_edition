@@ -1,3 +1,5 @@
+package Chap1_Bags_Queues_Stacks;
+
 import edu.princeton.cs.algs4.StdIn;
 
 public class CopyStack {
