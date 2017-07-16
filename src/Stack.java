@@ -47,6 +47,18 @@ public class Stack<Item> implements Iterable<Item> {
         return value;
     }
 
+    public void removeAll(Item item) {
+        while (head != null && head.item.equals(item))
+            head = head.next;
+        for (Node current = head; current != null; current = current.next) {
+            Node next = current.next;
+            while (next != null && next.item.equals(item)) {
+                next = next.next;
+            }
+            current.next = next;
+        }
+    }
+
     public Iterator<Item> iterator() {
         return new StackIterator();
     }
@@ -81,7 +93,8 @@ public class Stack<Item> implements Iterable<Item> {
                 stack.push(item);
             else if (!stack.isEmpty()) StdOut.print(stack.pop() + " ");
         }
-        for(String s: stack){
+        stack.removeAll("item");
+        for (String s : stack) {
             System.out.println(s);
         }
         StdOut.println("(" + stack.size() + " left on queue)");
