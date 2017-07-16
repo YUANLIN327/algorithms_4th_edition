@@ -27,9 +27,6 @@ public class LinkListPractice<Item> {
         }
     }
 
-    void remove(Object o, Stack stack) {
-
-    }
 
 
     public static void main(String[] args) {

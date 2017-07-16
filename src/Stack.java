@@ -12,6 +12,8 @@ public class Stack<Item> implements Iterable<Item> {
     private class Node {
         Item item;
         Node next;
+        public Node(Item i)      { this.item = i; }
+        public String toString() { return hashCode() + ":" + item; }
     }
 
     public boolean isEmpty() {
@@ -29,8 +31,7 @@ public class Stack<Item> implements Iterable<Item> {
 
     public void push(Item item) {
         Node oldHead = head;
-        head = new Node();
-        head.item = item;
+        head = new Node(item);
         if (N == 0) tail = head;
         else head.next = oldHead;
         N++;
@@ -84,7 +85,7 @@ public class Stack<Item> implements Iterable<Item> {
 
 
     public static void main(String[] args) {
-        Stack<String> stack = new Stack<String>();
+        Stack<String> stack = new Stack<>();
 
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();

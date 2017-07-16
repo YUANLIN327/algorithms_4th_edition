@@ -9,6 +9,8 @@ public class Queue<Item> implements Iterable<Item> {
     private class Node {
         Item item;
         Node next;
+        public Node(Item i)      { this.item = i; }
+        public String toString() { return hashCode() + ":" + item; }
     }
 
     public boolean isEmpty() {
@@ -19,10 +21,9 @@ public class Queue<Item> implements Iterable<Item> {
         return N;
     }
 
-    public void enque(Item item) {
+    public void enqueue(Item item) {
         Node oldLast = last;
-        last = new Node();
-        last.item = item;
+        last = new Node(item);
         last.next = null;
         if (isEmpty()) first = last;
         else oldLast.next = last;
