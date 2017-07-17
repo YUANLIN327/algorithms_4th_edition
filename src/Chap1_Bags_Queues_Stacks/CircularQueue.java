@@ -7,9 +7,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CircularQueue<Item> implements Iterable<Item> {
-    private Node last;
+    protected Node last;
+    protected int N;
 
-    private class Node {
+    protected class Node {
         Item item;
         Node next;
 
@@ -20,6 +21,10 @@ public class CircularQueue<Item> implements Iterable<Item> {
         public String toString() {
             return hashCode() + ":" + item;
         }
+    }
+
+    public int size() {
+        return N;
     }
 
     public boolean isEmpty() {
@@ -37,6 +42,7 @@ public class CircularQueue<Item> implements Iterable<Item> {
             last.next = first;
             oldLast.next = last;
         }
+        N++;
     }
 
     public Item dequeue() {
@@ -44,6 +50,7 @@ public class CircularQueue<Item> implements Iterable<Item> {
         Item item = last.next.item;
         if (last.next == last) last = null;
         else last.next = last.next.next;
+        N--;
         return item;
     }
 

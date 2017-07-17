@@ -156,7 +156,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         return new DoubleLinkedListIterator();
     }
 
-    class DoubleLinkedListIterator implements Iterator<Item> {
+    private class DoubleLinkedListIterator implements Iterator<Item> {
         Node iterator = first;
 
         @Override
