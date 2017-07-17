@@ -1,7 +1,7 @@
-import Chap1_Bags_Queues_Stacks.Josephus;
+import Chap1_Bags_Queues_Stacks.RandomQueue;
 
 public class Main {
     public static void main(String[] args) {
-        Josephus.main(null);
+        RandomQueue.main(null);
     }
 }

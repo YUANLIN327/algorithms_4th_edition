@@ -6,49 +6,49 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ResizeArrayQueue<Item> implements Iterable<Item> {
-    private int n = 0;
+    protected int N = 0;
     private int first = 0;
     private int last = 0;
-    private Item[] q;
+    protected Item[] q;
 
     public ResizeArrayQueue() {
         q = (Item[]) new Object[2];
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return N == 0;
     }
 
     public int size() {
-        return n;
+        return N;
     }
 
 
     public void resize(int capacity) {
-        assert capacity > n && capacity > q.length;
+        assert capacity > N && capacity > q.length;
         Item[] tmp = (Item[]) new Object[capacity];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < N; i++) {
             tmp[i] = q[(first + i) % q.length];
         }
         first = 0;
-        last = n;
+        last = N;
         q = tmp;
     }
 
     public void enqueue(Item item) {
-        if (n == q.length) resize(q.length * 2);
+        if (N == q.length) resize(q.length * 2);
         q[last++] = item;
         if (last == q.length) last = 0;
-        n++;
+        N++;
     }
 
     public Item dequeue() {
         Item tmp = q[first];
         q[first] = null;
         first++;
-        n--;
-        if (n == q.length / 4) resize(q.length / 2);
-        if (n == q.length) first = 0;
+        N--;
+        if (N == q.length / 4) resize(q.length / 2);
+        if (N == q.length) first = 0;
         return tmp;
     }
 
@@ -69,7 +69,7 @@ public class ResizeArrayQueue<Item> implements Iterable<Item> {
         private int i = 0;
 
         public boolean hasNext() {
-            return i < n;
+            return i < N;
         }
 
         public void remove() {
