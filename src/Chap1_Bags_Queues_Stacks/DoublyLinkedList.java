@@ -65,10 +65,10 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             prev.next = next;
             next.previous = prev;
         } else if (prev != null) {
-            prev.next = next;
+            prev.next = null;
             last = prev;
-        } else if (last != null) {
-            next.previous = prev;
+        } else if (next != null) {
+            next.previous = null;
             first = next;
         } else {
             first = null;
@@ -174,6 +174,14 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
+        DoublyLinkedList<Integer> dllInteger = new DoublyLinkedList();
+        dllInteger.insertFront(5);
+        dllInteger.insertFront(6);
+        System.out.println(dllInteger.getFront());
+        System.out.println(dllInteger.getEnd());
+        dllInteger.remove(5);
+        dllInteger.removeEnd();
+        System.out.println("size: " + dllInteger.size());
 
     }
 }
