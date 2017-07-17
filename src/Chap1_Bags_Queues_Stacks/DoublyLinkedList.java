@@ -21,32 +21,40 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         }
     }
 
-    private boolean insertNodeAfter(Node ref, Node insert) {
-        if (ref == null) return false;
-        Node refNext = ref.next;
-        ref.next = insert;
-        insert.previous = ref;
-        if (refNext == null) {
+    private void insertNodeAfter(Node ref, Node insert) {
+        if (ref == null) {
+            first = insert;
             last = insert;
         } else {
-            insert.next = refNext;
-            refNext.previous = insert;
+            Node refNext = ref.next;
+            ref.next = insert;
+            insert.previous = ref;
+            if (refNext == null) {
+                last = insert;
+            } else {
+                insert.next = refNext;
+                refNext.previous = insert;
+            }
         }
-        return true;
+        N++;
     }
 
-    private boolean insertNodeBefore(Node ref, Node insert) {
-        if (ref == null) return false;
-        Node refPrevious = ref.previous;
-        ref.previous = insert;
-        insert.next = ref;
-        if (refPrevious == null) {
+    private void insertNodeBefore(Node ref, Node insert) {
+        if (ref == null) {
             first = insert;
+            last = insert;
         } else {
-            refPrevious.next = insert;
-            insert.previous = refPrevious;
+            Node refPrevious = ref.previous;
+            ref.previous = insert;
+            insert.next = ref;
+            if (refPrevious == null) {
+                first = insert;
+            } else {
+                refPrevious.next = insert;
+                insert.previous = refPrevious;
+            }
         }
-        return true;
+        N++;
     }
 
     private boolean removeNode(Node remove) {
@@ -59,10 +67,14 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         } else if (prev != null) {
             prev.next = next;
             last = prev;
-        } else {
+        } else if (last != null) {
             next.previous = prev;
             first = next;
+        } else {
+            first = null;
+            last = null;
         }
+        N--;
         return true;
     }
 
@@ -77,48 +89,6 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         return N == 0;
     }
 
-    public void insertFront(Item item) {
-        Node newFirst = new Node(item);
-        if (isEmpty()) {
-            first = newFirst;
-            last = newFirst;
-        } else {
-            newFirst.next = first;
-            first.previous = newFirst;
-            first = newFirst;
-        }
-        N++;
-    }
-
-    public void insertEnd(Item item) {
-        Node newLast = new Node(item);
-        if (isEmpty()) {
-            first = newLast;
-            last = newLast;
-        } else {
-            last.next = newLast;
-            newLast.previous = last;
-            last = newLast;
-        }
-        N++;
-    }
-
-    public boolean insertBefore(Item key, Item item) {
-        Node keyNode = first;
-        while (keyNode != null && !keyNode.item.equals(item)) {
-            keyNode = keyNode.next;
-        }
-        return keyNode != null && insertNodeBefore(keyNode, new Node(item));
-    }
-
-    public boolean insertAfter(Item key, Item item) {
-        Node keyNode = first;
-        while (keyNode != null && !keyNode.item.equals(item)) {
-            keyNode = keyNode.next;
-        }
-        return keyNode != null && insertNodeAfter(keyNode, new Node(item));
-    }
-
     public Item getFront() {
         return first.item;
     }
@@ -127,30 +97,50 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         return last.item;
     }
 
+    //    insert method
+    public void insertFront(Item item) {
+        Node insert = new Node(item);
+        insertNodeBefore(first, insert);
+    }
+
+    public void insertEnd(Item item) {
+        Node insert = new Node(item);
+        insertNodeAfter(last, insert);
+    }
+
+    public boolean insertBefore(Item key, Item item) {
+        Node keyNode = first;
+        while (keyNode != null && !keyNode.item.equals(item)) {
+            keyNode = keyNode.next;
+        }
+        if (keyNode == null) return false;
+        insertNodeBefore(keyNode, new Node(item));
+        return true;
+    }
+
+    public boolean insertAfter(Item key, Item item) {
+        Node keyNode = first;
+        while (keyNode != null && !keyNode.item.equals(item)) {
+            keyNode = keyNode.next;
+        }
+        if (keyNode == null) return false;
+        insertNodeAfter(keyNode, new Node(item));
+        return true;
+    }
+
+    // remove method
     public Item removeFront() {
         if (isEmpty()) throw new NoSuchElementException();
-        Item result = first.item;
-        first = first.next;
-        if (first != null) {
-            first.previous = null;
-        } else {
-            last = null;
-        }
-        N--;
-        return result;
+        Item item = first.item;
+        removeNode(first);
+        return item;
     }
 
     public Item removeEnd() {
         if (isEmpty()) throw new NoSuchElementException();
-        Item result = last.item;
-        last = last.previous;
-        if (last != null) {
-            last.next = null;
-        } else {
-            first = null;
-        }
-        N--;
-        return result;
+        Item item = last.item;
+        removeNode(last);
+        return item;
     }
 
     public boolean remove(Item item) {
