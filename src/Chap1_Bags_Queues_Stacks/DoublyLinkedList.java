@@ -167,14 +167,19 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
     }
 
     class DoubleLinkedListIterator implements Iterator<Item> {
+        Node iterator = first;
+
         @Override
         public boolean hasNext() {
-            return false;
+            return iterator != null;
         }
 
         @Override
         public Item next() {
-            return null;
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = iterator.item;
+            iterator = iterator.next;
+            return item;
         }
     }
 
