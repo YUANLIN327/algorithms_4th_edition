@@ -9,15 +9,13 @@ public class Josephus extends CircularQueue<Integer> {
 
     private int removeNodeAfter(Node node) {
         Node nextNode = node.next;
-        if (size() == 1) last = null;
+        if (node == nextNode) last = null;
         else {
             node.next = nextNode.next;
             if (nextNode == last) {
                 last = node;
             }
         }
-        N--;
-        nextNode.next = null;
         return nextNode.item;
     }
 
