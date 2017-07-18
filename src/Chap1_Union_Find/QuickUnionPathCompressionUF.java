@@ -1,10 +1,10 @@
 package Chap1_Union_Find;
 
-public class QuickUnionUF {
+public class QuickUnionPathCompressionUF {
     private int[] parents;
     private int count;
 
-    public QuickUnionUF(int count) {
+    public QuickUnionPathCompressionUF(int count) {
         this.count = count;
         parents = new int[count];
         for (int i = 0; i < count; i++) {
@@ -24,7 +24,13 @@ public class QuickUnionUF {
 
     public int find(int p) {
         validate(p);
+        int o = p;
         while (parents[p] != p) p = parents[p];
+        while (parents[o] != o) {
+            int next = parents[o];
+            parents[o] = p;
+            o = next;
+        }
         return p;
     }
 
