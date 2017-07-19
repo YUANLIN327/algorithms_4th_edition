@@ -34,6 +34,14 @@ public class QuickUnionPathCompressionUF {
         return p;
     }
 
+    public int findWithRecursion(int p) {
+        validate(p);
+        if (p == parents[p]) return p;
+        int root = findWithRecursion(parents[p]);
+        parents[p] = root;
+        return root;
+    }
+
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
