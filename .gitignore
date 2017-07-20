@@ -26,3 +26,6 @@ hs_err_pid*
 .idea/
 fundamentals.iml
 out/
+
+# resources_files
+resources/
