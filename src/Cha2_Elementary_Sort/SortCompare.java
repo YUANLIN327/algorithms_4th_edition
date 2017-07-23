@@ -27,12 +27,11 @@ public class SortCompare {
 
     public static double timeRandomInput(String alg, int N, int T) {
         double total = 0.0;
-        Double[] arr = new Double[N];
-        for (int i = 0; i < T; i++) {
-            for (int j = 0; j < N; j++) {
-                arr[j] = StdRandom.uniform();
-            }
-            total += time(alg, arr);
+        Double[] a = new Double[N];
+        for (int t = 0; t < T; t++) {
+            for (int i = 0; i < N; i++)
+                a[i] = StdRandom.uniform();
+            total += time(alg, a);
         }
         return total;
     }
@@ -46,14 +45,7 @@ public class SortCompare {
 
     public static void main(String[] args) {
         SortCompare.doCompare("insertion", "selection", 1000, 100);
-//        SortCompare.doCompare("shell", "selection", 10000, 3);
-//        SortCompare.doCompare("shell", "insertion", 1000, 10);
-//        int N = 10000;
-//        Double[] arr = new Double[N];
-//        for (int j = 0; j < N; j++) {
-//            arr[j] = StdRandom.uniform();
-//        }
-//        System.out.println(timeRandomInput("insertion" , 500, 30));
-//        System.out.println("Is sorted: " + ElementarySort.isSorted(arr));
+        SortCompare.doCompare("shell", "selection", 10000, 3);
+        SortCompare.doCompare("shell", "insertion", 1000, 10);
     }
 }

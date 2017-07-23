@@ -19,23 +19,23 @@ public class ElementarySort {
         return true;
     }
 
-    public static void selectionSort(Comparable[] arr) {
-        int length = arr.length;
-        for (int i = 0; i < length - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < length; j++) {
-                if (less(arr[j], arr[minIndex])) minIndex = j;
-            }
-            exchange(arr, i, minIndex);
+    public static void selectionSort(Comparable[] a) {
+        int N = a.length; // array length
+        for (int i = 0; i < N; i++)
+        { // Exchange a[i] with smallest entry in a[i+1...N).
+            int min = i; // index of minimal entr.
+            for (int j = i+1; j < N; j++)
+                if (less(a[j], a[min])) min = j;
+            exchange(a, i, min);
         }
     }
 
-    public static void insertionSort(Comparable[] arr) {
-        int length = arr.length;
-        for (int i = 1; i < length; i++) {
-            for (int j = i; j > 0 && less(arr[j], arr[j - 1]); j--) {
-                exchange(arr, j, j - 1);
-            }
+    public static void insertionSort(Comparable[] a) {
+        int N = a.length;
+        for (int i = 1; i < N; i++)
+        { // Insert a[i] among a[i-1], a[i-2], a[i-3]... ..
+            for (int j = i; j > 0 && less(a[j], a[j-1]); j--)
+                exchange(a, j, j-1);
         }
     }
 
