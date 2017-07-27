@@ -17,7 +17,7 @@ public class MergeX {
         }
     }
 
-    private static void show(Object[] a) {
+    public static void show(Object[] a) {
         for (int i = 0; i < a.length; i++) {
             StdOut.println(a[i]);
         }
@@ -64,11 +64,10 @@ public class MergeX {
         int mid = lo + (hi - lo) / 2;
         sort(aux, arr, lo, mid);
         sort(aux, arr, mid + 1, hi);
-//
-//        if (less(aux[mid], aux[mid + 1])) {
-//            System.arraycopy(aux, lo, arr, lo, hi - lo + 1);
-//            return;
-//        }
+        if (less(aux[mid], aux[mid + 1])) {
+            System.arraycopy(aux, lo, arr, lo, hi - lo + 1);
+            return;
+        }
         merge(arr, aux, lo, mid, hi);
     }
 

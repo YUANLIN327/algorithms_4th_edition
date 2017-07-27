@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.In;
 public class MergeSort {
 
     public static boolean less(Comparable a, Comparable b) {
-        return a.compareTo(b) < 0;
+        return a.compareTo(b) <= 0;
     }
 
     public static boolean isSorted(Comparable[] arr, int lo, int hi) {
