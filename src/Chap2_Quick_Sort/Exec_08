@@ -1,0 +1,4 @@
+Q:About how many compares will Quick.sort() make when sorting an array of N items that are all equal?
+
+A: Worst Case Scenario.For each partition, it requires N compares. And it splits the array into two equal halfs.
+Therefore the answer is NlgN.
