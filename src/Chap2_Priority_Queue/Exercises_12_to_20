@@ -61,3 +61,9 @@ Is the resulting heap identical to the heap as it was before these op- erations?
 #### 见MaxPQ constructor.
 
 2.4.20 Prove that sink-based heap construction uses fewer than 2N compares and fewer than N exchanges.
+
+#### Compares: sink-based heap construction build from right to left. For each level of the tree,
+     the total compares is 2 times the count of node in this level of the tree and no more than 1 time the count of the node
+     in this level of tree. Because the child of parent is already the root of a sub heap so for each node, only one step down is necessary.
+     Compares <= 2 * ( N / 2 + N / 4 + N / 8 + ...) = N ( 1 + 1 / 2 + 1 / 4 + 1 / 8 + ...) <= 2N;
+     Exchanges <= N
