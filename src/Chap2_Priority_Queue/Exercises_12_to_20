@@ -1,0 +1,63 @@
+2.4.12 Suppose that your application will have a huge number of ﬁnd the maximum operations,but a relatively small number of insert and remove the maximum operations.Which priority-queue implementation do you think would be most effective: heap, unordered array, or ordered array?
+
+#### Ordered Array would be best. Find the maximum is constant(1)
+
+2.4.13 Describe a way to avoid the j < N test in sink().
+
+```java
+   private void sink(int k) {
+         while (k * 2 <= n) {
+             int j = k * 2;
+             if (j + 1 <= n && less(j, j + 1)) j++;
+             if (!less(k, j)) break;
+             exch(k, j);
+             k = j;
+         }
+     }
+```
+
+
+
+2.4.14 What is the minimum number of items that must be exchanged during a remove the maximum operation in a heap of size N with no duplicate keys?Give a heap of size 15 for which the minimum is achieved. Answer the same questions for two and three successive remove the maximum operations.
+
+#### logN
+                   15
+           14                13
+       6       5       ...         11
+    4    3   2   1    ...    10   9
+    第一种情况下 只用交换一次就能保证是稳定的
+    连续换两次的话 需要交换三次
+    连续换三次的话 需要交换五次
+
+
+
+2.4.15 Design a linear-time certiﬁcation algorithm to check whether an array pq[] is a min-oriented heap.
+
+```java
+  static boolean isMinHeap(){
+      return isMinHeap(1)
+  }
+  static boolean isMinHeap(int k, size N){
+    int left = k * 2;
+    int right = k * 2 + 1;
+    if(left <= N && less(left, k) return false;
+    if(right <= N && less(right, k) return false;
+    return isMinHeap(left) && isMinHeap(right)
+  }
+```
+
+2.4.16 For N=32, give arrays of items that make heapsort use as many and as few compares as possible.
+
+2.4.17 Prove that building a minimum-oriented priority queue of size k then doing N k replace the minimum (insert followed by remove the minimum) operations leaves the k largest of the N items in the priority queue.
+
+2.4.18 In MaxPQ, suppose that a client calls insert() with an item that is larger than all items in the queue,and then immediately calls delMax(). Assume that there are no duplicate keys.
+Is the resulting heap identical to the heap as it was before these op- erations?Answer the same question for two insert() operations (the ﬁrst with a key larger than all keys in the queueand the second for a key larger than that one) followed by two delMax() operations.
+
+#### For insert one item, the answer is __always the same__.  Replacement gonna follow the same path, because the when inserting new one, all parent will become its child along the path.When removing max, the last one will sink along the same path.
+
+#### For inser two items, still the same. Induction, after inserting second and remove, it will become the same tree as if only one item is inserted.
+
+2.4.19 Implement the constructor for MaxPQ that takes an array of items as argument,using the bottom-up heap construction method described on page 323 in the text.
+#### 见MaxPQ constructor.
+
+2.4.20 Prove that sink-based heap construction uses fewer than 2N compares and fewer than N exchanges.

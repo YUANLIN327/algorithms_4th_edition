@@ -29,6 +29,15 @@ public class MaxPQ<Key> implements Iterable<Key> {
     }
 
     public MaxPQ(Key[] keys) {
+        this(keys.length * 2);
+        for (int i = 1; i <= keys.length; i++) {
+            pq[i] = keys[i - 1];
+        }
+        n = keys.length;
+        for (int j = keys.length / 2; j >= 0; j--) {
+            sink(j);
+        }
+
     }
 
     public boolean isEmpty() {

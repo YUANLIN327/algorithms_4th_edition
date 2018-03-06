@@ -11,6 +11,15 @@ Answer: R R P O T Y I I U Q E U
 
  Answer: If any removeMax is called, this method will fail.
 
+ 2.4.3 Provide priority-queue implementations that support insert and remove the maximum, one for each of the following underlying data structures: unordered ar- ray, ordered array, unordered linked list, and linked list.
+ Give a table of the worst-case bounds for each operation for each of your four implementations.
+
+ Answer:  Data Structure\Operation     Insert        Remove
+          Unordered Array                1              N
+          Ordered   Array                N              1
+          Unordered LinkedList           1              N
+          Ordered   LinkedList           N              1
+
  2.4.4 Is an array that is sorted in decreasing order a max-oriented heap?
 
  Answer: Yes. Parent is larger than children at any entry of the array.
@@ -66,18 +75,19 @@ Answer: R R P O T Y I I U Q E U
   Give the list of positions in a heap of size 31 where the kth largest (i) can appear,and (ii) cannot appear,
   for k=2, 3, 4 (assuming the values to be distinct).
 
-  思路 [2^(logN), 2^(logN + 1))
+  思路: 最大的位置取决于有几个点比他大在tree上面
 
-  Answer: k = 2, (i) can appear: 2, 3
-  Answer: k = 3, (i) can appear: 2, 3
-  Answer: k = 4, (i) can appear: 4, 5, 6, 7
+  Answer: k = 2, (i) can appear: [2, 4) 只能在第二层
+  Answer: k = 3, (i) can appear: [2, 8)  可以在第二层 第三层
+  Answer: k = 4, (i) can appear: [2, 16)  可以在第二层 第三层  第四层
 
   2.4.8 Answer the previous exercise for the kth smallest item.
 
-  思路 同上, k = 2 置换为上题的31 - 2 = 29
-  思路 同上, k = 3 置换为上题的31 - 2 = 28
-  思路 同上, k = 4 置换为上题的31 - 2 = 27
-  答案都是从16 到 31
+  思路: 最小的位置取决于point下面有几个点比他要小在tree上面
+  Answer: k = 2, (i) can appear: [16, 31] 只能在最后一层
+  Answer: k = 3, (i) can appear: [8, 31]  可以在倒数第一,二层
+  Answer: k = 4, (i) can appear: [8, 31)  可以在倒数第一,二层
+
 
   2.4.9 Draw all of the different heaps that can be made from the ﬁve keys A B C D E, then draw all of
   the different heaps that can be made from the ﬁve keys A A A B B.
