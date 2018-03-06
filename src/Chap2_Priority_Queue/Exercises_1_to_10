@@ -1,0 +1,104 @@
+2.4.1 Suppose that the sequence P R I O * R * * I * T * Y * * * Q U E * * * U * E
+(where a letter means insert and an asterisk means remove the maximum) is applied to an
+initially empty priority queue. Give the sequence of letters returned by the
+remove the maximum operations.
+
+Answer: R R P O T Y I I U Q E U
+
+2.4.2 Criticize the following idea: To implement ﬁnd the maximum in constant time,
+ why not use a stack or a queue, but keep track of the maximum value inserted so far
+ , then return that value for ﬁnd the maximum?
+
+ Answer: If any removeMax is called, this method will fail.
+
+ 2.4.4 Is an array that is sorted in decreasing order a max-oriented heap?
+
+ Answer: Yes. Parent is larger than children at any entry of the array.
+
+ 2.4.5 Give the heap that results when the keys E A S Y Q U E S T I O N are inserted in that order
+ into an initially empty max-oriented heap.
+
+ E
+ E A
+ S A E
+ Y S A E
+ Y S A E Q
+ Y S U E Q A
+ Y S U E Q A E
+ Y S U S Q A E E
+ Y T U S Q A E E S
+ Y T U S T A E E S Q
+ Y T U S T A E E S Q I
+ Y T U S T O E E S Q I A
+ Y T U S T O E E S Q I A N
+
+ 2.4.6 Using the conventions of Exercise 2.4.1, give the sequence of heaps produced
+  when the operations P R I O * R * * I * T * Y * * * Q U E * * * U * E are performed
+  on an initially empty max-oriented heap.
+
+  P 1
+  R P 2
+  R P I 3
+  R P I O 4
+  P O I 3
+  R P I O 4
+  P I O 3
+  O I 2
+  O I I 3
+  I I 2
+  T I I 3
+  I I 2
+  Y I I 3
+  I I 2
+  I 1
+  empty
+  Q 1
+  U Q 2
+  U Q E 3
+  Q E 2
+  E 1
+  empty
+  U 1
+  empty
+  E
+
+  2.4.7 The largest item in a heap must appear in position 1, and the second largest must bein position 2 or position 3.
+  Give the list of positions in a heap of size 31 where the kth largest (i) can appear,and (ii) cannot appear,
+  for k=2, 3, 4 (assuming the values to be distinct).
+
+  思路 [2^(logN), 2^(logN + 1))
+
+  Answer: k = 2, (i) can appear: 2, 3
+  Answer: k = 3, (i) can appear: 2, 3
+  Answer: k = 4, (i) can appear: 4, 5, 6, 7
+
+  2.4.8 Answer the previous exercise for the kth smallest item.
+
+  思路 同上, k = 2 置换为上题的31 - 2 = 29
+  思路 同上, k = 3 置换为上题的31 - 2 = 28
+  思路 同上, k = 4 置换为上题的31 - 2 = 27
+  答案都是从16 到 31
+
+  2.4.9 Draw all of the different heaps that can be made from the ﬁve keys A B C D E, then draw all of
+  the different heaps that can be made from the ﬁve keys A A A B B.
+
+  Answer for ABCDE: EDCBA;EDCAB;ECDAB;ECDBA;
+  Answer for AAABB: BBAAA;BABAA
+
+
+  2.4.10 Suppose that we wish to avoid wasting one position in a heap-ordered array pq[], putting the largest value in
+   pq[0], its children in pq[1] and pq[2], and so forth, proceeding in level order.
+   Where are the parents and children of pq[k]?
+
+  Answer: (i) parents: (k + 1) / 2 - 1; (ii) children: (k + 1) * 2 - 1, (k + 1) * 2
+
+  2.4.11 Suppose that your application will have a huge number of insert operations, but only a few remove the
+  maximum operations. Which priority-queue implementation do you think would be most effective:
+  heap, unordered array, or ordered array?
+
+  Answer: Unordered array. Constant insert and N remove.
+
+
+
+
+
